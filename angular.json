@@ -39,7 +39,7 @@
                 "input": "src/global.scss"
               }
             ],
-            "scripts": []
+            "scripts": [{ "input": "src/Winwheel.js" }]
           },
           "configurations": {
             "production": {
