@@ -1,4 +1,11 @@
-<app-header></app-header>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Sarah l'indécise</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="back()">Revenir</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
   <div class="page">
@@ -6,7 +13,7 @@
       <canvas id="canvas" width="305" height="310">
         <p style="color: white" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
       </canvas>
-      <button id="spin_button" (click)="startSpin();"> SPIN </button>
+      <button id="spin_button" (click)="startSpin()"> SPIN </button>
     </div>
   </div>
 </ion-content>

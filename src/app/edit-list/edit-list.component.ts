@@ -15,9 +15,9 @@ export class EditListComponent implements OnInit {
 
   ngOnInit() {}
 
-  add(nwItem: string) {
+  add(nwItem: string | number) {
     if (nwItem) {
-      this.list.push(nwItem);
+      this.list.push(nwItem as string);
     }
   }
 

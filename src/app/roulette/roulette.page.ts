@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 declare var Winwheel: any;
 
@@ -13,7 +13,7 @@ export class RoulettePage implements OnInit {
   private wheelSpinning = false;
   private options: string[] = [];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -37,6 +37,10 @@ export class RoulettePage implements OnInit {
         },
       });
     });
+  }
+
+  back() {
+    this.router.navigate(["home"]);
   }
 
   startSpin() {
