@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { EditListComponent } from "../edit-list/edit-list.component";
 import { Router } from "@angular/router";
+import { RoulettePage } from "../roulette/roulette.page";
+import { demanderAUtilisateur } from "./calc";
 
 interface ListItem {
   options: string[];
@@ -27,14 +29,15 @@ export class HomePage implements OnInit {
   }
 
   async openModal(id?: number) {
+    const nw = typeof id === "number" ? false : true;
     id = id ?? this.list.push({ name: "", options: [] }) - 1;
 
     const modal = await this.modalController.create({
       component: EditListComponent,
-      swipeToClose: true,
+      swipeToClose: false,
       componentProps: {
-        close: async () => await modal.dismiss(),
-        save: (list: string[], name: string) => this.save(id, list, name),
+        mclose: async (save = false) => await this.close(modal, nw, save),
+        save: (list: string[], name: string) => this.save(id, list, name, nw),
         list: this.list[id].options,
         name: this.list[id].name,
       },
@@ -43,7 +46,25 @@ export class HomePage implements OnInit {
     return await modal.present();
   }
 
-  save(id: number, options: string[], name: string) {
+  async close(modal: HTMLIonModalElement, nw: boolean, save: boolean) {
+    await modal.dismiss();
+    if (nw && !save) {
+      this.list.pop();
+    }
+    this.update();
+  }
+
+  save(id: number, options: string[], name: string, nw: boolean) {
+    if (!name || options.length === 0) {
+      alert("Le formulaire est incomplet.");
+      if (nw) {
+        this.list.pop();
+      }
+
+      this.update();
+      return;
+    }
+
     this.list[id] = { options, name };
     this.update();
   }
@@ -57,9 +78,20 @@ export class HomePage implements OnInit {
     localStorage.setItem("list", JSON.stringify(this.list));
   }
 
-  roulette(id: number) {
-    this.router.navigate(["/roulette"], {
-      queryParams: { options: this.list[id].options },
+  calc() {
+    demanderAUtilisateur();
+  }
+
+  async roulette(id: number) {
+    const modal = await this.modalController.create({
+      component: RoulettePage,
+      swipeToClose: false,
+      componentProps: {
+        back: async () => await modal.dismiss(),
+        options: this.list[id].options,
+      },
     });
+
+    return await modal.present();
   }
 }

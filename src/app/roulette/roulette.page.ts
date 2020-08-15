@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Component, OnInit, Input } from "@angular/core";
+import { Router } from "@angular/router";
 
 declare var Winwheel: any;
 
@@ -11,36 +11,34 @@ declare var Winwheel: any;
 export class RoulettePage implements OnInit {
   private wheel: any;
   private wheelSpinning = false;
-  private options: string[] = [];
+  @Input() options: string[];
+  @Input() back: () => Promise<void>;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
-      this.options = params.options;
-
-      this.wheel = new Winwheel({
-        numSegments: this.options.length, // Specify number of segments.
-        outerRadius: 150, // Set radius to so wheel fits the background.
-        innerRadius: 50, // Set inner radius to make wheel hollow.
-        textFontSize: 16, // Set font size accordingly.
-        textMargin: 0, // Take out default margin.
-        // Define segments including colour and text.
-        segments: this.options.map((o) => ({ fillStyle: "#eae56f", text: o })),
-        // Define spin to stop animation.
-        animation: {
-          type: "spinToStop",
-          duration: 5,
-          spins: 8,
-          callbackFinished: (indicatedSegment: any) =>
-            this.finish(indicatedSegment),
-        },
-      });
+    this.wheel = new Winwheel({
+      numSegments: this.options.length, // Specify number of segments.
+      outerRadius: 150, // Set radius to so wheel fits the background.
+      innerRadius: 45, // Set inner radius to make wheel hollow.
+      textFontSize: 16, // Set font size accordingly.
+      textMargin: 0, // Take out default margin.
+      // Define segments including colour and text.
+      segments: this.options.map((o) => ({
+        fillStyle: "#00000000",
+        text: o,
+        strokeStyle: "white",
+        textFillStyle: "white",
+      })),
+      // Define spin to stop animation.
+      animation: {
+        type: "spinToStop",
+        duration: 5,
+        spins: 8,
+        callbackFinished: (indicatedSegment: any) =>
+          this.finish(indicatedSegment),
+      },
     });
-  }
-
-  back() {
-    this.router.navigate(["home"]);
   }
 
   startSpin() {

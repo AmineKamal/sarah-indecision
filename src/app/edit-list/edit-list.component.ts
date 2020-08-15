@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from "@angular/core";
 export class EditListComponent implements OnInit {
   @Input() list: string[];
   @Input() name: string;
-  @Input() close: () => Promise<void>;
+  @Input() mclose: (save?: boolean) => Promise<void>;
   @Input() save: (list: string[], name: string) => void;
 
   constructor() {}
@@ -21,6 +21,17 @@ export class EditListComponent implements OnInit {
     }
   }
 
+  async close() {
+    if (!this.name || !this.list || this.list.length === 0) {
+      return await this.mclose();
+    }
+
+    const save = confirm("Veux tu sauvegarder ta liste?");
+    if (save) {
+      await this.complete();
+    }
+  }
+
   remove(i: number) {
     this.list.splice(i, 1);
   }
@@ -30,11 +41,11 @@ export class EditListComponent implements OnInit {
   }
 
   async complete() {
-    if (!this.name || !this.list) {
+    if (!this.name || !this.list || this.list.length === 0) {
       return alert("La liste est incomplète.");
     }
 
     this.save(this.list, this.name);
-    await this.close();
+    await this.mclose(true);
   }
 }

@@ -25,21 +25,31 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-ion-toolbar {
-  --background: #ff69b4;
-  --color: black;
+.p1 {
+  background: #2b5876; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #4e4376,
+    #2b5876
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#4e4376),
+    to(#2b5876)
+  );
+  background: -webkit-linear-gradient(left, #4e4376, #2b5876);
+  background: -o-linear-gradient(left, #4e4376, #2b5876);
+  background: linear-gradient(
+    to right,
+    #4e4376,
+    #2b5876
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  -webkit-box-shadow: 0 0 20px darkblue;
+  box-shadow: 0 0 20px darkblue;
 }
 
-ion-tab-bar {
-  --background: #ff69b4;
-  --color: black;
-}
-
-ion-content {
-  --background: #ffc0cb;
-}
-
-ion-footer {
-  position: relative;
-  bottom: 0px;
+ion-item {
+  border-bottom: solid gray 1px;
 }
