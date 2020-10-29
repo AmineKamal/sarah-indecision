@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-import { RoulettePage } from './roulette.page';
+import { RoulettePage } from "./roulette.page";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: RoulettePage
   }
 ];

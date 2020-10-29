@@ -12,6 +12,7 @@ export class RoulettePage implements OnInit {
   private wheel: any;
   private wheelSpinning = false;
   @Input() options: string[];
+  @Input() title: string;
   @Input() back: () => Promise<void>;
 
   constructor(private router: Router) {}

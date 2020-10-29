@@ -11,6 +11,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { EditListComponent } from "./edit-list/edit-list.component";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { AuthGuard } from "./auth.guard";
 
 @NgModule({
   declarations: [AppComponent, EditListComponent],
@@ -25,6 +26,7 @@ import { FormsModule } from "@angular/forms";
   providers: [
     StatusBar,
     SplashScreen,
+    AuthGuard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],

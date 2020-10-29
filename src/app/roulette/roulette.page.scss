@@ -1,4 +1,9 @@
 /* Sets the background image for the wheel */
+ion-icon {
+  font-size: 32px;
+  transform: rotate(180deg);
+}
+
 .the_wheel {
   width: 305px;
   height: 310px;
@@ -11,6 +16,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.roulette-title {
+  position: relative;
+  top: -80px;
+  text-align: center;
 }
 
 #spin_button {

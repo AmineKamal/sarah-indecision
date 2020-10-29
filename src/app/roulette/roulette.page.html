@@ -9,11 +9,13 @@
 
 <ion-content color="light">
   <div class="page">
-    <div class="the_wheel p1" align="center" valign="center">
-      <canvas id="canvas" width="305" height="310">
-        <p style="color: white" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
-      </canvas>
-      <button id="spin_button" (click)="startSpin()"> SPIN </button>
-    </div>
+      <h2 class="roulette-title">{{ title }}</h2>
+      <ion-icon name="triangle"></ion-icon>
+      <div class="the_wheel p1" align="center" valign="center">
+        <canvas id="canvas" width="305" height="310">
+          <p style="color: white" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+        </canvas>
+        <button id="spin_button" (click)="startSpin()"> GO </button>
+      </div>
   </div>
 </ion-content>

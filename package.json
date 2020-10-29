@@ -7,6 +7,7 @@
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0",
     "build": "ng build --prod -- --base-href https://amineKamal.github.io/sarah-indecision/",
+    "deploy": "npm run build && npx angular-cli-ghpages --dir=www",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

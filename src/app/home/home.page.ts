@@ -1,9 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { EditListComponent } from "../edit-list/edit-list.component";
+import { VideoPlayerComponent } from "../video-player/video-player.component";
 import { Router } from "@angular/router";
 import { RoulettePage } from "../roulette/roulette.page";
 import { demanderAUtilisateur } from "./calc";
+
 
 interface ListItem {
   options: string[];
@@ -20,6 +22,7 @@ export class HomePage implements OnInit {
     public modalController: ModalController,
     private router: Router
   ) {}
+
   public list: ListItem[] = [];
 
   ngOnInit() {
@@ -89,6 +92,19 @@ export class HomePage implements OnInit {
       componentProps: {
         back: async () => await modal.dismiss(),
         options: this.list[id].options,
+        title: this.list[id].name
+      },
+    });
+
+    return await modal.present();
+  }
+
+  async video() {
+    const modal = await this.modalController.create({
+      component: VideoPlayerComponent,
+      swipeToClose: false,
+      componentProps: {
+        back: async () => await modal.dismiss(),
       },
     });
 

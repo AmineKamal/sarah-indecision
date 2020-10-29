@@ -11,6 +11,12 @@
         <ion-icon name="add" (click)="openModal()"></ion-icon>
       </ion-fab-button>
     </ion-fab>
+    <!-- <ion-fab vertical="top" horizontal="start" slot="fixed">
+      <ion-fab-button color="primary">
+        <ion-icon *ngIf="!voiceManager.enabled" name="mic-outline" (click)="voiceManager.start()"></ion-icon>
+        <ion-icon *ngIf="voiceManager.enabled" name="mic-off-outline" (click)="voiceManager.stop()"></ion-icon>
+      </ion-fab-button>
+    </ion-fab> -->
   </div>
 
   <ion-card>
@@ -18,10 +24,10 @@
       <ion-item-sliding *ngFor="let item of list; let i = index" lines="full">
         <ion-item color="primary" lines="full">
           <ion-icon slot="start" name="aperture-outline" (click)="roulette(i)"></ion-icon>
-          <ion-label>
+          <ion-label style="padding-left: 10px;border-left: solid white 1px;">
             <h2>{{ item.name }}</h2>
 
-            <ion-chip *ngFor="let option of item.options">
+            <ion-chip *ngFor=" let option of item.options">
               <ion-label>{{ option }}</ion-label>
             </ion-chip>
 
@@ -40,16 +46,23 @@
 
     </ion-list>
   </ion-card>
+
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar color="primary" class="p1" (click)="calc()">
+  <ion-toolbar color="primary" class="p1" style="border-bottom: white 1px solid;">
     <ion-title>
-      Calculatrice de Sarah
+      Applications
     </ion-title>
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon slot="start" name="calculator"></ion-icon>
+  </ion-toolbar>
+
+  <ion-toolbar color="primary">
+    <ion-buttons style="display: flex; justify-content: space-around;">
+      <ion-button (click)="calc()">
+        <ion-icon  name="calculator" ></ion-icon>
+      </ion-button>
+      <ion-button (click)="video()">
+        <ion-icon  name="play-outline" ></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

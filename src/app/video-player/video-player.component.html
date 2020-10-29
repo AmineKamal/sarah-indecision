@@ -1,0 +1,19 @@
+<ion-header translucent>
+  <ion-toolbar color="primary" class="p1">
+    <ion-title>Meilleure Vidéo Au Monde</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="back()">Revenir</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<br />
+
+<ion-content fullscreen color="light">
+  <ion-card>
+    <video width="300" #videoPlayer>
+      <source src="assets/videos/video.mov" type="video/mp4" />
+      Browser not supported
+    </video>
+  </ion-card>
+</ion-content>

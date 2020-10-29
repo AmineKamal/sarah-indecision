@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary" class="p1">
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-card color="light" style="margin-top: 50px;">
+    <img src="assets/pictures/zara.png" />
+
+    <ion-card-header color="light">
+      <ion-card-title>Comment ce nomme cet individu?</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content color="light">
+      <ion-item color="light">
+        <ion-label position="floating">Entrez le nom ici</ion-label>
+        <ion-input #name></ion-input>
+      </ion-item>
+
+      <ion-button color="primary" style="margin-top: 20px;" expand="block" (click)="login()">Connexion</ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
+
