@@ -12,12 +12,18 @@ export class VideoPlayerComponent implements AfterViewInit {
   constructor() { }
 
   ngAfterViewInit() {
-    this.toggleVideo();
+    // this.toggleVideo();
   }
 
   async toggleVideo() {
     const native: HTMLVideoElement = this.videoplayer.nativeElement;
-    await native.requestFullscreen();
+
+    if ((native as any).webkitEnterFullscreen) {
+      (native as any).webkitEnterFullscreen();
+    } else {
+      await native.requestFullscreen();
+    }
+
     await native.play();
     native.addEventListener("ended", () => this.back());
   }

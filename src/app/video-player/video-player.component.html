@@ -9,11 +9,13 @@
 
 <br />
 
-<ion-content fullscreen color="light">
-  <ion-card>
-    <video width="300" #videoPlayer>
-      <source src="assets/videos/video.mov" type="video/mp4" />
-      Browser not supported
-    </video>
-  </ion-card>
+<ion-content fullscreen color="light" >
+  <div style="width:100%;height:100%; display: flex; justify-content: center; align-items: center;">
+    <ion-card style="width: 80%;margin:0">
+      <video  style="width: 100%; height: auto;" playsinline controls #videoPlayer>
+        <source src="assets/videos/video.mov" type="video/mp4" />
+        Browser not supported
+      </video>
+    </ion-card>
+  </div>
 </ion-content>

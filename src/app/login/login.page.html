@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="light">
+<ion-content color="light" style="max-height: 100vh;">
   <ion-card color="light" style="margin-top: 50px;">
     <img src="assets/pictures/zara.png" />
 
@@ -15,7 +15,7 @@
     <ion-card-content color="light">
       <ion-item color="light">
         <ion-label position="floating">Entrez le nom ici</ion-label>
-        <ion-input #name></ion-input>
+        <ion-input #name (ionFocus)="ensureVisible()"></ion-input>
       </ion-item>
 
       <ion-button color="primary" style="margin-top: 20px;" expand="block" (click)="login()">Connexion</ion-button>

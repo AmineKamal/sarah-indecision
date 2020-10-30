@@ -12,9 +12,10 @@ import { EditListComponent } from "./edit-list/edit-list.component";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { AuthGuard } from "./auth.guard";
+import { VideoPlayerComponent } from "./video-player/video-player.component";
 
 @NgModule({
-  declarations: [AppComponent, EditListComponent],
+  declarations: [AppComponent, EditListComponent, VideoPlayerComponent],
   entryComponents: [],
   imports: [
     BrowserModule,

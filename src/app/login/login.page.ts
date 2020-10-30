@@ -17,6 +17,20 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  scrolling(e: any, c: number) {
+    e.scrollIntoView();
+
+    if (c < 5)
+    {
+      setTimeout(() => this.scrolling(e, c + 1), 300);
+    }
+  }
+
+  ensureVisible()
+  {
+    setTimeout(() => window.scroll(0, document.documentElement.offsetHeight), 300);
+  }
+
   async login() {
     const val = this.name.value;
 
