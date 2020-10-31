@@ -110,4 +110,9 @@ export class HomePage implements OnInit {
 
     return await modal.present();
   }
+
+  logout() {
+    localStorage.setItem("HASH", "");
+    this.router.navigate(["login"]);
+  }
 }
