@@ -1,0 +1,20 @@
+<ion-header translucent>
+  <ion-toolbar color="primary" class="p1">
+    <ion-title>Nombre de jours</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goBack()">Revenir</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<br />
+
+<ion-content fullscreen color="light">
+  <div style="margin-top: 100px;"></div>
+  <h2 class="title">Le temps écoulé depuis la première fois qu'on s'est rencontré.</h2>
+  <div style="position: relative; height: 300px; display: flex; justify-content: center;align-items: center;margin-top: 50px;margin-bottom: 25px;">
+    <ion-icon class="heart-icon" name="heart" color="danger" (click)="next()"></ion-icon>
+    <span class="heart-days">{{ current }}</span>
+  </div>
+  <h2 class="title">{{ frenchTerms[_current] }}</h2>
+</ion-content>

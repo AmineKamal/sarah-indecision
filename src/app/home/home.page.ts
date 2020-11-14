@@ -5,6 +5,7 @@ import { VideoPlayerComponent } from "../video-player/video-player.component";
 import { Router } from "@angular/router";
 import { RoulettePage } from "../roulette/roulette.page";
 import { demanderAUtilisateur } from "./calc";
+import { DaysSincePage } from "../days-since/days-since.page";
 
 
 interface ListItem {
@@ -114,5 +115,18 @@ export class HomePage implements OnInit {
   logout() {
     localStorage.setItem("HASH", "");
     this.router.navigate(["login"]);
+  }
+
+  async daysSince()
+  {
+    const modal = await this.modalController.create({
+      component: DaysSincePage,
+      swipeToClose: false,
+      componentProps: {
+        back: async () => await modal.dismiss(),
+      },
+    });
+
+    return await modal.present();
   }
 }

@@ -24,6 +24,12 @@ const routes: Routes = [
     path: "login",
     loadChildren: () => import("./login/login.module").then( m => m.LoginPageModule)
   },
+  {
+    path: "days-since",
+    loadChildren: () => import("./days-since/days-since.module").then( m => m.DaysSincePageModule),
+    canActivate: [AuthGuard]
+  },
+
 
 ];
 
