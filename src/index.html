@@ -126,4 +126,16 @@ function drawParticles() {
 }
 
 drawParticles();
+
+setInterval(() => 
+{
+  for(i = 0; i < nbOfParticles; i++) {
+  setTimeout(function(){
+    mouseX = Math.random() * c.width; //first creation: random x
+    mouseY = Math.random() * c.height; //first creation: random y
+
+    particles.push(new createParticle());
+  }, i * 15);
+}
+}, 20000);
 </script>
