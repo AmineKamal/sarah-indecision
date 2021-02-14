@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path: "roulette",
     loadChildren: () =>
-      import("./roulette/roulette.module").then((m) => m.RoulettePageModule),
+      import("./roulette-home/roulette/roulette.module").then((m) => m.RoulettePageModule),
       canActivate: [AuthGuard]
   },
   {
@@ -29,6 +29,18 @@ const routes: Routes = [
     loadChildren: () => import("./days-since/days-since.module").then( m => m.DaysSincePageModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: "gym-progression",
+    loadChildren: () => import("./gym-progression/gym-progression.module").then( m => m.GymProgressionPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "roulette-home",
+    loadChildren: () => import("./roulette-home/roulette-home.module").then( m => m.RouletteHomePageModule),
+    canActivate: [AuthGuard]
+  },
+
+
 
 
 ];

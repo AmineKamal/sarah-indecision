@@ -9,12 +9,62 @@
 
 <br />
 
-<ion-content fullscreen color="light">
-  <div style="margin-top: 100px;"></div>
-  <h2 class="title">Le temps écoulé depuis la première fois qu'on s'est rencontré.</h2>
-  <div style="position: relative; height: 300px; display: flex; justify-content: center;align-items: center;margin-top: 50px;margin-bottom: 25px;">
-    <ion-icon class="heart-icon" name="heart" color="danger" (click)="next()"></ion-icon>
-    <span class="heart-days">{{ current }}</span>
+<ion-content fullscreen color="light" (click)="next()">
+  <canvas style="position: absolute;" id="my-canvas"></canvas>
+  <div *ngIf="_current !== 'summary' || !showSummaryYears" style="margin-top: 80px;"></div>
+  <h2 class="title">{{title}}</h2>
+  <div *ngIf="_current !== 'summary'" style="margin-top: 50px;margin-bottom: 25px;">
+    <div [class.animated]="animate" [class.css]="animate" style="position: relative; display: flex; justify-content: center;align-items: center;">
+      <ion-icon class="heart-icon" name="heart" color="danger"></ion-icon>
+      <span class="heart-days">{{ current }}</span>
+    </div>
+    <h2 class="title">{{ frenchTerms[_current] }}</h2>
   </div>
-  <h2 class="title">{{ frenchTerms[_current] }}</h2>
+  <div *ngIf="_current === 'summary'" (click)="next()" style="display: flex; flex-wrap: wrap;justify-content: space-around;">
+    <ng-container *ngFor="let c of current, let i = index" style="width: 50%;">
+      <div *ngIf="i <= 1">
+        <div [class.animated]="animate" [class.css]="animate" style="position: relative; display: flex; justify-content: center;align-items: center;">
+          <ion-icon class="heart-icon-summary" name="heart" color="danger"></ion-icon>
+          <span class="heart-days-summary">{{ c }}</span>
+        </div>
+        <h4 class="title" style="margin:0">{{ frenchTerms[_current][i] }}</h4>
+      </div>
+    </ng-container>
+  </div>
+  <div id="days-since-years" *ngIf="_current === 'summary' && showSummaryYears" [style.transform]="animate ? 'scale(1, 1)' : 'scale(0,0)'" style="display: flex; flex-wrap: wrap;justify-content: space-around;">
+    <ng-container *ngFor="let c of current, let i = index" style="width: 50%;">
+      <div *ngIf="i === 4">
+        <div [class.animated]="animate" [class.css]="animate" style="position: relative; display: flex; justify-content: center;align-items: center;" (click)="next()">
+          <ion-icon class="heart-icon-summary" name="heart" color="danger"></ion-icon>
+          <span class="heart-days-summary">{{ c }}</span>
+        </div>
+        <h4 class="title" style="margin:0">{{ frenchTerms[_current][i] }}</h4>
+      </div>
+    </ng-container>
+  </div>
+  <div *ngIf="_current === 'summary'" style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+    <ng-container *ngFor="let c of current, let i = index" style="width: 50%;">
+      <div *ngIf="i > 1 && i < 4">
+        <div [class.animated]="animate" [class.css]="animate" style="position: relative; display: flex; justify-content: center;align-items: center;">
+          <ion-icon class="heart-icon-summary" name="heart" color="danger"></ion-icon>
+          <span class="heart-days-summary">{{ c }}</span>
+        </div>
+        <h4 class="title" style="margin:0">{{ frenchTerms[_current][i] }}</h4>
+      </div>
+    </ng-container>
+  </div>
 </ion-content>
+
+<ion-toolbar color="primary">
+  <ion-buttons style="display: flex; justify-content: space-around;">
+    <ion-button (click)="applydata()">
+      <ion-icon name="time-outline"></ion-icon>
+    </ion-button>
+    <ion-button (click)="null">
+      <ion-icon name="list-outline"></ion-icon>
+    </ion-button>
+    <ion-button (click)="add($event)">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>

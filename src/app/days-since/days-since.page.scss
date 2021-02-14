@@ -1,5 +1,5 @@
 .heart-icon {
-  font-size: 400px;
+  font-size: 350px;
   text-align: center;
   margin: 0;
 }
@@ -15,4 +15,98 @@
     -46%
   ); /* This is a shorthand of translateX(-50%) and translateY(-50%) */
   text-align: center;
+}
+
+.heart-icon-summary {
+  font-size: 160px;
+  text-align: center;
+  margin: 0;
+}
+
+.heart-days-summary {
+  color: white;
+  font-size: 30px;
+  position: absolute;
+  top: 46%; /* position the top  edge of the element at the middle of the parent */
+  left: 50%; /* position the left edge of the element at the middle of the parent */
+  transform: translate(
+    -50%,
+    -46%
+  ); /* This is a shorthand of translateX(-50%) and translateY(-50%) */
+  text-align: center;
+}
+
+.css {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  -ms-animation-delay: 1s;
+  -o-animation-delay: 1s;
+  animation-dely: 1s;
+}
+.animated {
+  -webkit-animation: 1000ms pulsate infinite alternate ease-in-out;
+  -moz-animation: 1000ms pulsate infinite alternate ease-in-out;
+  -ms-animation: 1000ms pulsate infinite alternate ease-in-out;
+  -o-animation: 1000ms pulsate infinite alternate ease-in-out;
+  animation: 1000ms pulsate infinite alternate ease-in-out;
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes pulsate {
+  0% {
+    -webkit-transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
+
+@-moz-keyframes pulsate {
+  0% {
+    -moz-transform: scale(1);
+  }
+  50% {
+    -moz-transform: scale(1.2);
+  }
+  100% {
+    -moz-transform: scale(1);
+  }
+}
+
+@-ms-keyframes pulsate {
+  0% {
+    -ms-transform: scale(1);
+  }
+  50% {
+    -ms-transform: scale(1.2);
+  }
+  100% {
+    -ms-transform: scale(1);
+  }
+}
+
+@-o-keyframes pulsate {
+  0% {
+    -o-transform: scale(1);
+  }
+  50% {
+    -o-transform: scale(1.2);
+  }
+  100% {
+    -o-transform: scale(1);
+  }
 }

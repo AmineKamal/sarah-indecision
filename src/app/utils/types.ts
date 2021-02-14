@@ -8,4 +8,11 @@ export interface DateSince
     weeks: number;
     months: number;
     years: number;
+    summary: string[];
+}
+
+
+export interface DateData {
+    title: string;
+    epoch: number;
 }

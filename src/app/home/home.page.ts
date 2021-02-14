@@ -1,11 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
-import { EditListComponent } from "../edit-list/edit-list.component";
 import { VideoPlayerComponent } from "../video-player/video-player.component";
 import { Router } from "@angular/router";
-import { RoulettePage } from "../roulette/roulette.page";
-import { demanderAUtilisateur } from "./calc";
+import { RoulettePage } from "../roulette-home/roulette/roulette.page";
+import { demanderAUtilisateur } from "./src/calc";
 import { DaysSincePage } from "../days-since/days-since.page";
+import { GymProgressionPage } from "../gym-progression/gym-progression.page";
+import { RouletteHomePage } from "../roulette-home/roulette-home.page";
 
 
 interface ListItem {
@@ -24,76 +25,18 @@ export class HomePage implements OnInit {
     private router: Router
   ) {}
 
-  public list: ListItem[] = [];
-
-  ngOnInit() {
-    if (localStorage.getItem("list")) {
-      this.list = JSON.parse(localStorage.getItem("list"));
-    }
-  }
-
-  async openModal(id?: number) {
-    const nw = typeof id === "number" ? false : true;
-    id = id ?? this.list.push({ name: "", options: [] }) - 1;
-
-    const modal = await this.modalController.create({
-      component: EditListComponent,
-      swipeToClose: false,
-      componentProps: {
-        mclose: async (save = false) => await this.close(modal, nw, save),
-        save: (list: string[], name: string) => this.save(id, list, name, nw),
-        list: this.list[id].options,
-        name: this.list[id].name,
-      },
-    });
-
-    return await modal.present();
-  }
-
-  async close(modal: HTMLIonModalElement, nw: boolean, save: boolean) {
-    await modal.dismiss();
-    if (nw && !save) {
-      this.list.pop();
-    }
-    this.update();
-  }
-
-  save(id: number, options: string[], name: string, nw: boolean) {
-    if (!name || options.length === 0) {
-      alert("Le formulaire est incomplet.");
-      if (nw) {
-        this.list.pop();
-      }
-
-      this.update();
-      return;
-    }
-
-    this.list[id] = { options, name };
-    this.update();
-  }
-
-  remove(id: number) {
-    this.list.splice(id, 1);
-    this.update();
-  }
-
-  update() {
-    localStorage.setItem("list", JSON.stringify(this.list));
-  }
+  ngOnInit() {}
 
   calc() {
     demanderAUtilisateur();
   }
 
-  async roulette(id: number) {
+  async roulette() {
     const modal = await this.modalController.create({
-      component: RoulettePage,
+      component: RouletteHomePage,
       swipeToClose: false,
       componentProps: {
         back: async () => await modal.dismiss(),
-        options: this.list[id].options,
-        title: this.list[id].name
       },
     });
 
@@ -121,6 +64,19 @@ export class HomePage implements OnInit {
   {
     const modal = await this.modalController.create({
       component: DaysSincePage,
+      swipeToClose: false,
+      componentProps: {
+        back: async () => await modal.dismiss(),
+      },
+    });
+
+    return await modal.present();
+  }
+
+  async gymProgression()
+  {
+    const modal = await this.modalController.create({
+      component: GymProgressionPage,
       swipeToClose: false,
       componentProps: {
         back: async () => await modal.dismiss(),

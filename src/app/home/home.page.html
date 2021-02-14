@@ -1,74 +1,33 @@
 <ion-header>
   <ion-toolbar color="primary" class="p1">
     <ion-title>Sarah l'indécise</ion-title>
+    <ion-button (click)="logout()" slot="end">
+      <ion-icon name="log-out-outline"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="light">
-  <div style="height: 75px;">
-    <ion-fab vertical="top" horizontal="end" slot="fixed">
-      <ion-fab-button color="primary">
-        <ion-icon name="add" (click)="openModal()"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-    <!-- <ion-fab vertical="top" horizontal="start" slot="fixed">
-      <ion-fab-button color="primary">
-        <ion-icon *ngIf="!voiceManager.enabled" name="mic-outline" (click)="voiceManager.start()"></ion-icon>
-        <ion-icon *ngIf="voiceManager.enabled" name="mic-off-outline" (click)="voiceManager.stop()"></ion-icon>
-      </ion-fab-button>
-    </ion-fab> -->
+<ion-content>
+  <div class="home-wrapper">
+    <ion-button (click)="daysSince()" size="large">
+      <ion-icon  name="calendar-outline" ></ion-icon>
+    </ion-button>
+
+    <ion-button (click)="roulette()" size="large">
+      <ion-icon  name="aperture-outline" ></ion-icon>
+    </ion-button>
+  
+    <ion-button (click)="calc()" size="large">
+      <ion-icon  name="calculator" ></ion-icon>
+    </ion-button>
+
+    <ion-button (click)="video()" size="large">
+      <ion-icon  name="play-outline" ></ion-icon>
+    </ion-button>
+
+    <ion-button (click)="gymProgression()" size="large">
+      <ion-icon name="body-outline"></ion-icon>
+    </ion-button>
+
   </div>
-
-  <ion-card>
-    <ion-list>
-      <ion-item-sliding *ngFor="let item of list; let i = index" lines="full">
-        <ion-item color="primary" lines="full">
-          <ion-icon slot="start" name="aperture-outline" (click)="roulette(i)"></ion-icon>
-          <ion-label style="padding-left: 10px;border-left: solid white 1px;">
-            <h2>{{ item.name }}</h2>
-
-            <ion-chip *ngFor=" let option of item.options">
-              <ion-label>{{ option }}</ion-label>
-            </ion-chip>
-
-          </ion-label>
-        </ion-item>
-
-        <ion-item-options side="end">
-          <ion-item-option color="warning" (click)="openModal(i)">
-            <ion-icon slot="icon-only" name="pencil"></ion-icon>
-          </ion-item-option>
-          <ion-item-option color="danger" (click)="remove(i)">
-            <ion-icon slot="icon-only" name="trash"></ion-icon>
-          </ion-item-option>
-        </ion-item-options>
-      </ion-item-sliding>
-
-    </ion-list>
-  </ion-card>
-
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar color="primary" class="p1" style="border-bottom: white 1px solid;">
-    <ion-buttons style="display: flex; justify-content: space-around;">
-      <ion-button (click)="daysSince()">
-        <ion-icon  name="calendar-outline" ></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-
-  <ion-toolbar color="primary">
-    <ion-buttons style="display: flex; justify-content: space-around;">
-      <ion-button (click)="calc()">
-        <ion-icon  name="calculator" ></ion-icon>
-      </ion-button>
-      <ion-button (click)="video()">
-        <ion-icon  name="play-outline" ></ion-icon>
-      </ion-button>
-      <ion-button (click)="logout()">
-        <ion-icon name="log-out-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer>

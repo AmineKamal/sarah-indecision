@@ -1,0 +1,16 @@
+<ion-content color="light">
+  <ion-list color="light">
+    <ion-item>
+      <ion-input [(ngModel)]="title" placeholder="Titre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime [(ngModel)]="date" value="1990-02-19" placeholder="Select Date"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Heure</ion-label>
+      <ion-datetime [(ngModel)]="hour" display-format="h:mm A" picker-format="h:mm A" value="1990-02-19T00:00Z"></ion-datetime>
+      </ion-item>
+    <ion-button expand="block" (click)="add()">Ajouter</ion-button>
+  </ion-list>
+</ion-content>

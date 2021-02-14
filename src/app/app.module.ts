@@ -13,9 +13,10 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { AuthGuard } from "./auth.guard";
 import { VideoPlayerComponent } from "./video-player/video-player.component";
+import { NewDataComponent } from "./days-since/new-data/new-data.component";
 
 @NgModule({
-  declarations: [AppComponent, EditListComponent, VideoPlayerComponent],
+  declarations: [AppComponent, EditListComponent, VideoPlayerComponent, NewDataComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
