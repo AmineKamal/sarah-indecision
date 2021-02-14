@@ -28,6 +28,114 @@
 
 <body>
   <app-root></app-root>
-<script src="runtime-es2015.bfe70b66b9d05e9ca705.js" type="module"></script><script src="runtime-es5.bfe70b66b9d05e9ca705.js" nomodule defer></script><script src="polyfills-es5.a35769c9bed2b71e0b93.js" nomodule defer></script><script src="polyfills-es2015.b93f804eeeb22214a253.js" type="module"></script><script src="scripts.907ee020e16b46236b12.js" defer></script><script src="main-es2015.c603a6101c110e465837.js" type="module"></script><script src="main-es5.c603a6101c110e465837.js" nomodule defer></script></body>
+  <canvas style="position: absolute; pointer-events: none;" id="canvas"></canvas>
+<script src="runtime-es2015.b10fa4a7fc4f32a77190.js" type="module"></script><script src="runtime-es5.b10fa4a7fc4f32a77190.js" nomodule defer></script><script src="polyfills-es5.a53d79c83b9eeaec68db.js" nomodule defer></script><script src="polyfills-es2015.10f34af79b99dcd00884.js" type="module"></script><script src="scripts.907ee020e16b46236b12.js" defer></script><script src="main-es2015.05b8400a102baec0385e.js" type="module"></script><script src="main-es5.05b8400a102baec0385e.js" nomodule defer></script></body>
 
 </html>
+
+<script>
+  var nbOfParticles = 50;
+
+window.requestAnimFrame = (function(){
+    return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        function(callback){
+            window.setTimeout(callback, 1000 / 60);
+        };
+})();
+var c = document.getElementById('canvas');
+
+addEventListener('click', e => {
+    if (c.classList.contains('disabled')) {return}
+    // Do not perform default action, stop bubbling the event
+    e.preventDefault();e.stopPropagation()
+
+    // Mark event as invalid for older browsers
+    return false
+})
+
+var ctx = c.getContext('2d');
+
+var w = window.innerWidth;
+var h = window.innerHeight;
+
+c.width = w;
+c.height = h;
+
+var paramX = 0;
+var paramY = 0;
+var rad = (Math.PI / 180);
+
+var mouseX = 0;
+var mouseY = 0;
+
+var particles = [];
+
+for(i = 0; i < nbOfParticles; i++) {
+  setTimeout(function(){
+    mouseX = Math.random() * c.width; //first creation: random x
+    mouseY = Math.random() * c.height; //first creation: random y
+
+    particles.push(new createParticle());
+  }, i * 15);
+}
+
+function createParticle() {
+
+  this.x = mouseX;
+  this.y = mouseY ;
+  this.r = Math.floor(Math.random() * 30) + 5; //size - rad
+  this.a = -90; //angle
+  this.vy = Math.floor(Math.random() * 5) + 2; //velocity y
+  this.color = '#EF4136'; //one of the three colors
+  this.life = Math.random() * 30;
+
+}
+  
+function drawParticles() {
+  requestAnimFrame(drawParticles);
+  ctx.clearRect(0,0,w,h);
+
+  for(t = 0; t < particles.length; t++) {
+    var p = particles[t];
+    ctx.beginPath();
+    ctx.fillStyle = p.color;
+    var x1 = p.x + p.r * Math.cos(p.a * rad);
+    var y1 = p.y + p.r * Math.sin(p.a * rad);
+    var cx1 = p.x + p.r * Math.cos((p.a + 22.5) * rad);
+    var cy1 = p.y + p.r * Math.sin((p.a + 22.5) * rad);
+    var cx2 = p.x + p.r * Math.cos((p.a - 22.5) * rad);
+    var cy2 = p.y + p.r * Math.sin((p.a - 22.5) * rad);
+    var chord = 2 * p.r * Math.sin(22.5 * rad / 2);
+
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.arc(cx1, cy1, chord, (270 + p.a) * rad, (270 + p.a + 225) * rad);
+    ctx.lineTo(p.x, p.y);
+    ctx.moveTo(x1, y1);
+    ctx.arc(cx2, cy2, chord, (90 + p.a) * rad, (90 + p.a + 135) * rad, true);
+    ctx.lineTo(p.x, p.y);
+    ctx.fill();
+
+    p.y-=p.vy;
+
+    p.life*=0.8;
+    
+  }  
+}
+
+drawParticles();
+
+setInterval(() => 
+{
+  for(i = 0; i < nbOfParticles; i++) {
+  setTimeout(function(){
+    mouseX = Math.random() * c.width; //first creation: random x
+    mouseY = Math.random() * c.height; //first creation: random y
+
+    particles.push(new createParticle());
+  }, i * 15);
+}
+}, 20000);
+</script>
