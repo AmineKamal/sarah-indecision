@@ -31,12 +31,12 @@ export class AppComponent {
     });
   }
 
-  // @HostListener("document:click", ["$event"])
-  // onclick(ev: any) {
-  //   mouseX = ev.clientX || ev.pageX;
-  //   mouseY = ev.clientY || ev.pageY;
-  //   console.log(ev);
+  @HostListener("document:click", ["$event"])
+  onclick(ev: any) {
+    mouseX = ev.clientX || ev.pageX;
+    mouseY = ev.clientY || ev.pageY;
+    console.log(ev);
 
-  //   particles.push(new createParticle());
-  // }
+    particles.push(new createParticle());
+  }
 }
